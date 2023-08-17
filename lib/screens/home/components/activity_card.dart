@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
-class SecondaryCourseCard extends StatelessWidget {
-  const SecondaryCourseCard({
+class ActivityCard extends StatefulWidget {
+  const ActivityCard({
     Key? key,
     required this.title,
-    this.iconsSrc = "assets/icons/ios.svg",
-    this.colorl = const Color(0xFF7553F6),
+    required this.iconSrc,
+    required this.description,
+    this.colorl = const Color.fromARGB(255, 255, 255, 255),
   }) : super(key: key);
 
-  final String title, iconsSrc;
+  final String title, description;
   final Color colorl;
+  final IconData iconSrc;
 
+  @override
+  State<ActivityCard> createState() => _ActivityCardState();
+}
+
+class _ActivityCardState extends State<ActivityCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 20),
       decoration: BoxDecoration(
-          color: colorl,
+          color: widget.colorl,
           borderRadius: const BorderRadius.all(Radius.circular(20))),
       child: Row(
         children: [
@@ -25,19 +31,18 @@ class SecondaryCourseCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
-                ),
+                Text(widget.title,
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                      fontFamily: 'Inter',
+                      fontSize: 20,
+                    )),
                 const SizedBox(height: 4),
-                const Text(
-                  "Watch video - 15 mins",
+                Text(
+                  widget.description,
                   style: TextStyle(
-                    color: Colors.white60,
-                    fontSize: 16,
+                    color: Colors.grey[600],
+                    fontSize: 12,
                   ),
                 )
               ],
@@ -51,7 +56,7 @@ class SecondaryCourseCard extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          SvgPicture.asset(iconsSrc)
+          Icon(widget.iconSrc),
         ],
       ),
     );

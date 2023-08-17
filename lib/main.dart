@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rive_animation/screens/entryPoint/entry_point.dart';
 import 'package:rive_animation/screens/onboarding/onboarding_screen.dart';
 
@@ -12,10 +13,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'The Flutter Way',
+    return GetMaterialApp(
+      title: 'Project Template',
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFEEF1F8),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 0, 110, 220),
         primarySwatch: Colors.blue,
         fontFamily: "Inter",
         inputDecorationTheme: const InputDecorationTheme(

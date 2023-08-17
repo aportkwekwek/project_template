@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:rive/rive.dart';
 import 'package:rive_animation/screens/onboarding/components/modal_login.dart';
 import 'components/buttons/animated_btn.dart';
 
@@ -79,7 +78,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             barrierDismissible: true,
                             barrierLabel: "Sign In",
                             context: context,
-                            pageBuilder: (context, _, __) => ModalLogin());
+                            pageBuilder: (context, _, __) =>
+                                const ModalLogin());
                       },
                     ),
                     const Padding(

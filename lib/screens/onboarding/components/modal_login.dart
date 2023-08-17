@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../controllers/login_controller.dart';
 import 'modal_login_form.dart';
 
 class ModalLogin extends StatefulWidget {
@@ -14,6 +14,8 @@ class ModalLogin extends StatefulWidget {
 }
 
 class _ModalLoginState extends State<ModalLogin> {
+  LoginController loginAuthenticateController = LoginController();
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -36,7 +38,7 @@ class _ModalLoginState extends State<ModalLogin> {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                Text(
+                const Text(
                   "Sign In",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -44,8 +46,8 @@ class _ModalLoginState extends State<ModalLogin> {
                     fontSize: 35,
                   ),
                 ),
-                SizedBox(height: 10.0),
-                Text(
+                const SizedBox(height: 10.0),
+                const Text(
                   "Minim ullamco occaecat consectetur proident duis aute. Deserunt amet anim ex id quis proident incididunt.",
                   textAlign: TextAlign.justify,
                   style: TextStyle(
@@ -54,10 +56,15 @@ class _ModalLoginState extends State<ModalLogin> {
                     height: 1.3,
                   ),
                 ),
-                SizedBox(height: 20.0),
-                ModalLogin_Form(),
-                SizedBox(height: 10.0),
-                Row(
+                const SizedBox(height: 20.0),
+                ModalLoginForm(
+                  emailController: loginAuthenticateController.emailController,
+                  passwordController:
+                      loginAuthenticateController.passwordController,
+                  buttonTap: loginAuthenticateController.googleAuthenticate,
+                ),
+                const SizedBox(height: 10.0),
+                const Row(
                   children: [
                     Text(
                       'Create an account',
@@ -74,8 +81,8 @@ class _ModalLoginState extends State<ModalLogin> {
                     )
                   ],
                 ),
-                SizedBox(height: 20.0),
-                Row(
+                const SizedBox(height: 20.0),
+                const Row(
                   children: [
                     Expanded(child: Divider()),
                     Padding(
@@ -92,9 +99,9 @@ class _ModalLoginState extends State<ModalLogin> {
                     Expanded(child: Divider()),
                   ],
                 ),
-                SizedBox(height: 20.0),
-                Text('Sign in / Sign Up'),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
+                const Text('Sign in / Sign Up'),
+                const SizedBox(height: 20.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -108,7 +115,7 @@ class _ModalLoginState extends State<ModalLogin> {
                       height: 70,
                       width: 70,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.apple_outlined,
                       size: 75,
                     ),

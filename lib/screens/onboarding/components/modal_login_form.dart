@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:rive_animation/screens/onboarding/components/buttons/project_button.dart';
 
-import 'buttons/animated_btn.dart';
+class ModalLoginForm extends StatefulWidget {
+  late TextEditingController emailController = TextEditingController();
+  late TextEditingController passwordController = TextEditingController();
+  late Function()? buttonTap;
 
-class ModalLogin_Form extends StatelessWidget {
-  const ModalLogin_Form({super.key});
+  ModalLoginForm({
+    super.key,
+    required this.emailController,
+    required this.passwordController,
+    required this.buttonTap,
+  });
 
+  @override
+  State<ModalLoginForm> createState() => _ModalLoginFormState();
+}
+
+class _ModalLoginFormState extends State<ModalLoginForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -21,6 +33,7 @@ class ModalLogin_Form extends StatelessWidget {
           ),
           const SizedBox(height: 10.0),
           TextFormField(
+            controller: widget.emailController,
             decoration: const InputDecoration(
               prefixIcon: Padding(
                 padding: EdgeInsets.all(8.0),
@@ -50,6 +63,7 @@ class ModalLogin_Form extends StatelessWidget {
           ),
           const SizedBox(height: 10.0),
           TextFormField(
+            controller: widget.passwordController,
             obscureText: true,
             decoration: const InputDecoration(
               prefixIcon: Padding(
@@ -72,8 +86,9 @@ class ModalLogin_Form extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20.0),
-          const Center(
+          Center(
             child: ProjectButton(
+              buttonTap: widget.buttonTap,
               buttonLabel: 'Login',
             ),
           ),

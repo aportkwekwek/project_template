@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../model/course.dart';
-import 'components/course_card.dart';
-import 'components/secondary_course_card.dart';
+import '../../model/activities.dart';
+import '../../model/project.dart';
+import '../../screens/home/components/project_card.dart';
+import 'components/activity_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,26 +17,32 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 40),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Text(
-                  "Courses",
+                  "Dashboard",
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins',
+                        fontSize: 32,
+                      ),
                 ),
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: courses
+                  children: cardProject
                       .map(
-                        (course) => Padding(
+                        (card) => Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: CourseCard(
-                            title: course.title,
-                            iconSrc: course.iconSrc,
-                            color: course.color,
+                          child: ProjectCard(
+                            title: card.title,
+                            iconSrc: card.iconSrc,
+                            color: card.color,
+                            description: card.description,
+                            subdescription: card.subdescription,
                           ),
                         ),
                       )
@@ -45,22 +52,26 @@ class HomePage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Text(
-                  "Recent",
+                  "Activities",
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ),
-              ...recentCourses
-                  .map((course) => Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20, right: 20, bottom: 20),
-                        child: SecondaryCourseCard(
-                          title: course.title,
-                          iconsSrc: course.iconSrc,
-                          colorl: course.color,
-                        ),
-                      ))
-                  .toList(),
+              SingleChildScrollView(
+                child: Column(
+                    children: activities
+                        .map(
+                          (activity) => Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: ActivityCard(
+                              title: activity.title,
+                              iconSrc: activity.iconSrc,
+                              description: activity.description,
+                            ),
+                          ),
+                        )
+                        .toList()),
+              ),
             ],
           ),
         ),
